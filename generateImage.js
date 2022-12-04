@@ -2,18 +2,18 @@ const Canvas = require("canvas")
 const Discord = require("discord.js")
 const { Attachment } = require('discord.js')
 
-const background = "https://i.imgur.com/S0fe7zt.png"
+const background = "https://i.imgur.com/DJnAc8v.jpg"
 
 const dim = {
-    height: 450,
-    width: 1000,
-    margin: 50
+    height: 581,
+    width: 581,
+    margin: 58
 }
 
 const av = {
-    size: 140,
-    x: 250,
-    y: 125
+    size: 256,
+    x: 163,
+    y: 130
 
 }
 const generateImage = async (member) => {
@@ -42,6 +42,23 @@ const generateImage = async (member) => {
 
     ctx.drawImage(avimg, av.x, av.y)
     ctx.restore()
+
+    // write in text
+    ctx.fillStyle = "white"
+    ctx.textAlign = "center"
+
+    // draw in welcome
+    ctx.font = "50px Sans"
+    ctx.fillText("Welcome", dim.width/2, dim.margin + 70)
+
+    // draw in the user name
+    ctx.font = "60px Sans"
+    ctx.fillText(username + discrim, dim.width/2, dim.height - dim.margin - 100)
+
+
+    // draw into the server
+    ctx.font = "40px Sans"
+    ctx.fillText("to the server", dim.width / 2, dim.height - dim.margin - 50)
 
 
    const attachment = new Discord.AttachmentBuilder(canvas.toBuffer(), 'welcome.png')
